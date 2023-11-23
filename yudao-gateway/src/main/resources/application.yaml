@@ -64,6 +64,32 @@ spring:
             - Path=/admin-api/report/**
           filters:
             - RewritePath=/admin-api/report/v3/api-docs, /v3/api-docs
+            ## wms-server 服务
+        - id: wms-admin-api # 路由的编号
+          uri: grayLb://wms-server
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/admin-api/wms/**
+          filters:
+            - RewritePath=/admin-api/wms/v3/api-docs, /v3/api-docs # 配置
+        - id: wms-app-api # 路由的编号
+          uri: grayLb://wms-server
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/app-api/wms/**
+          filters:
+            - RewritePath=/app-api/wms/v2/api-docs, /v2/api-docs
+        ##wcs服务
+        - id: wcs-admin-api # 路由的编号
+          uri: grayLb://wcs-server
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/admin-api/wcs/**
+          filters:
+            - RewritePath=/admin-api/wcs/v3/api-docs, /v3/api-docs # 配置
+        - id: wcs-app-api # 路由的编号
+          uri: grayLb://wcs-server
+          predicates: # 断言，作为路由的匹配条件，对应 RouteDefinition 数组
+            - Path=/app-api/wcs/**
+          filters:
+            - RewritePath=/app-api/wcs/v2/api-docs, /v2/api-docs
         ## pay-server 服务
         - id: pay-admin-api # 路由的编号
           uri: grayLb://pay-server
